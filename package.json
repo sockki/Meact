@@ -1,0 +1,19 @@
+{
+  "name": "meact",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/plugin-transform-react-jsx-development": "^7.25.9",
+    "@babel/preset-env": "^7.26.0",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.10"
+  }
+}
