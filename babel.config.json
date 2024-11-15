@@ -3,14 +3,13 @@
     [
       "@babel/plugin-transform-react-jsx",
       {
-        "throwIfNamespace": false, // defaults to true
-        "runtime": "automatic", // defaults to classic
-        "importSource": "custom-jsx-library" // defaults to react
-      }
+        "runtime": "automatic", // 자동으로 pragma를 사용하도록 설정
+        "importSource": "./Meact",
+        "throwIfNamespace": false, //  JSX 스펙에서는 허용되지만 React에서는 허용되지 않는 JSX인 경우 에러를 throw할건지 말건지 결정하는 옵션
+      },
     ]
   ],
   "presets": [
-    ["@babel/preset-react"],
     [
       "@babel/preset-env",
       {
@@ -21,8 +20,10 @@
           "safari": "11.1"
         },
         "useBuiltIns": "usage",
-        "corejs": "3.6.5"
+        "corejs": "3.6.5",
+        "modules": false
       }
-    ]
+    ],
+    
   ]
 }
