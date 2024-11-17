@@ -17,28 +17,28 @@ type element = {
 const makeElement = (
   type: string,
   config: jsxsConfig | jsxConfig,
-  maybeKey?: maybeKey,
+  maybeKey?: maybeKey
 ) => {
-    let key = null;
-    const props:jsxsConfig | jsxConfig = {}
+  let key = null;
+  const props: jsxsConfig | jsxConfig = {};
 
-    if (maybeKey) {
-        key = "" + maybeKey;
-      }
-    
-      if (config !== null) {
-        for (let propName of Object.keys(config)) {
-          props[propName] = config[propName];
-        }
-      }
-    
-      const element = {
-        type,
-        key,
-        props,
-      };
-    
-      return element;
+  if (maybeKey) {
+    key = "" + maybeKey;
+  }
+
+  if (config !== null) {
+    for (let propName of Object.keys(config)) {
+      props[propName] = config[propName];
+    }
+  }
+
+  const element = {
+    type,
+    key,
+    props,
+  };
+
+  return element;
 };
 
 export const jsxs = (
@@ -46,7 +46,7 @@ export const jsxs = (
   config: jsxsConfig,
   maybeKey?: maybeKey
 ): element => {
-  return makeElement(type,config,maybeKey);
+  return makeElement(type, config, maybeKey);
 };
 
 export const jsx = (
@@ -54,5 +54,5 @@ export const jsx = (
   config: jsxConfig,
   maybeKey?: maybeKey
 ): element => {
-  return makeElement(type,config,maybeKey);
+  return makeElement(type, config, maybeKey);
 };
