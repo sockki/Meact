@@ -1,0 +1,25 @@
+{
+  "name": "meact",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@babel/preset-env": "^7.26.0",
+    "@types/node": "^22.9.0",
+    "babel-preset-es2015": "^6.24.1",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.25.9",
+    "@babel/preset-typescript": "^7.26.0"
+  }
+}
