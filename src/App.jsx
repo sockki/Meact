@@ -1,9 +1,27 @@
-function App() {
+function Header() {
   return (
-    <div id="app">
-      <h1>Hello, React Clone!</h1>
-    </div>
+    <header>
+      <h1>My React Clone</h1>
+    </header>
   );
 }
 
-export default App;
+function Content() {
+  return (
+    <main>
+      <p>This is a sample content.</p>
+    </main>
+  );
+}
+
+
+export default function App() {
+  return (
+    <div id="app">
+      <Header />
+      <div>
+        {[1,2,3,4,5].map(v => <Content />)}
+      </div>
+    </div>
+  );
+}
