@@ -15,11 +15,14 @@ type element = {
 };
 
 const makeElement = (
-  type: string,
+  type: string | Function,
   config: jsxsConfig | jsxConfig,
   maybeKey?: maybeKey
 ) => {
-  let key = null;
+  if(typeof type === "function") {
+    return type(type, config, maybeKey);
+  }
+  let key:string | null = null;
   const props: jsxsConfig | jsxConfig = {};
 
   if (maybeKey) {
