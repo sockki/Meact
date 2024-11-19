@@ -13,6 +13,9 @@ export default function App() {
   return (
     <div id="app">
       <Header name={"minjun"} text={"good"}/>
+      <>
+        <div>핑계노</div>
+      </>
     </div>
   );
 }

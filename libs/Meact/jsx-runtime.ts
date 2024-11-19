@@ -14,12 +14,13 @@ type element = {
   props: jsxsConfig | jsxConfig;
 };
 
+export const Fragment = "fragment" 
+
 const makeElement = (
   type: string | Function,
   config: jsxsConfig | jsxConfig,
   maybeKey?: maybeKey
 ) => {
-  
   if(typeof type === "function") {
     return type(config);
   }
@@ -46,6 +47,7 @@ const makeElement = (
 
   return element;
 };
+
 
 export const jsxs = (
   type: string,
