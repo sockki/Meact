@@ -19,15 +19,18 @@ const makeElement = (
   config: jsxsConfig | jsxConfig,
   maybeKey?: maybeKey
 ) => {
+  
   if(typeof type === "function") {
-    return type(type, config, maybeKey);
+    return type(config);
   }
+  
   let key:string | null = null;
   const props: jsxsConfig | jsxConfig = {};
 
   if (maybeKey) {
     key = "" + maybeKey;
   }
+  
 
   if (config !== null) {
     for (let propName of Object.keys(config)) {
