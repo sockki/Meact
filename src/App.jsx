@@ -1,7 +1,6 @@
-function Header({text, name}) {
+function Header({text}) {
   return (
     <header>
-      <h1>{name}</h1>
       <div>{text}</div>
     </header>
   );
@@ -12,9 +11,9 @@ function Header({text, name}) {
 export default function App() {
   return (
     <div id="app">
-      <Header name={"minjun"} text={"good"}/>
+      <span id="나만 달라서">ㄹㅇㄹㅇㄹㅇㄹ</span>
       <>
-        <div>핑계노</div>
+        {[1,2,3].map(v => <Header text={v}/>)}
       </>
     </div>
   );
