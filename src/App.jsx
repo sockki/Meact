@@ -1,3 +1,6 @@
+import { useState } from "../libs/Meact/useState";
+import { rendering } from "./main";
+
 function Header({text}) {
   return (
     <header>
@@ -6,15 +9,23 @@ function Header({text}) {
   );
 }
 
+let renderingCount = 1
 
 
 export default function App() {
+  const [num, setNum] = useState(1);
+  const [num2, setNum2] = useState(3);
+  const onClick = () => {
+    setNum(num + 1)
+    rendering()
+  }
+  renderingCount += 1
   return (
     <div id="app">
-      <span id="나만 달라서">ㄹㅇㄹㅇㄹㅇㄹ</span>
-      <>
-        {[1,2,3].map(v => <Header text={v}/>)}
-      </>
+      <div id="state">{num}</div>
+      <div id="state2">{num2}</div>
+      <div>{renderingCount}</div>
+      <button onClick={() => onClick()}>눌러</button>
     </div>
   );
 }
