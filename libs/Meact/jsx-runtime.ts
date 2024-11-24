@@ -8,7 +8,7 @@ type JsxConfig = {
   [key: string]: string | number | Element;
 };
 
-type MaybeKey = string | number;
+type ElementKey = string | number;
 
 type Element = {
   type: string;
@@ -21,7 +21,7 @@ export const Fragment = "fragment";
 const makeElement = (
   type: string | Function,
   config: JsxsConfig | JsxConfig,
-  maybeKey?: MaybeKey
+  elementKey?: ElementKey
 ) => {
   if (typeof type === "function") {
     return type(config);
@@ -30,8 +30,8 @@ const makeElement = (
   let key: string | null = null;
   const props: JsxsConfig | JsxConfig = {};
 
-  if (maybeKey) {
-    key = "" + maybeKey;
+  if (elementKey) {
+    key = "" + elementKey;
   }
 
   if (config !== null) {
@@ -52,17 +52,17 @@ const makeElement = (
 export const jsxs = (
   type: string,
   config: JsxsConfig,
-  maybeKey?: MaybeKey
+  elementKey?: ElementKey
 ): Element => {
-  return makeElement(type, config, maybeKey);
+  return makeElement(type, config, elementKey);
 };
 
 export const jsx = (
   type: string,
   config: JsxConfig,
-  maybeKey?: MaybeKey
+  elementKey?: ElementKey
 ): Element => {
-  return makeElement(type, config, maybeKey);
+  return makeElement(type, config, elementKey);
 };
 
 export const render = (meactNode: Element, domNode: DomNode) => {
