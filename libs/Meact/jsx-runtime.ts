@@ -1,32 +1,37 @@
-type jsxsConfig = {
-  [key: string]: element[];
+type DomNode = HTMLElement;
+
+type JsxsConfig = {
+  [key: string]: Element[];
 };
 
-type jsxConfig = {
-  [key: string]: string | number | element;
+type JsxConfig = {
+  [key: string]: string | number | Element;
 };
 
-type maybeKey = string | number;
+type ElementKey = string | number;
 
-type element = {
+type Element = {
   type: string;
   key: string | null;
-  props: jsxsConfig | jsxConfig;
+  props: JsxsConfig | JsxConfig;
 };
+
+export const Fragment = "fragment";
 
 const makeElement = (
   type: string | Function,
-  config: jsxsConfig | jsxConfig,
-  maybeKey?: maybeKey
+  config: JsxsConfig | JsxConfig,
+  elementKey?: ElementKey
 ) => {
-  if(typeof type === "function") {
-    return type(type, config, maybeKey);
+  if (typeof type === "function") {
+    return type(config);
   }
-  let key:string | null = null;
-  const props: jsxsConfig | jsxConfig = {};
 
-  if (maybeKey) {
-    key = "" + maybeKey;
+  let key: string | null = null;
+  const props: JsxsConfig | JsxConfig = {};
+
+  if (elementKey) {
+    key = "" + elementKey;
   }
 
   if (config !== null) {
@@ -46,16 +51,46 @@ const makeElement = (
 
 export const jsxs = (
   type: string,
-  config: jsxsConfig,
-  maybeKey?: maybeKey
-): element => {
-  return makeElement(type, config, maybeKey);
+  config: JsxsConfig,
+  elementKey?: ElementKey
+): Element => {
+  return makeElement(type, config, elementKey);
 };
 
 export const jsx = (
   type: string,
-  config: jsxConfig,
-  maybeKey?: maybeKey
-): element => {
-  return makeElement(type, config, maybeKey);
+  config: JsxConfig,
+  elementKey?: ElementKey
+): Element => {
+  return makeElement(type, config, elementKey);
+};
+
+export const render = (meactNode: Element, domNode: DomNode) => {
+  const dom = document.createElement(
+    meactNode.type === Fragment ? "div" : meactNode.type
+  );
+
+  Object.keys(meactNode.props).forEach((key) => {
+    if (key !== "children" && meactNode.props[key]) {
+      dom.setAttribute(key, meactNode.props[key].toString());
+    }
+  });
+
+  switch (typeof meactNode.props.children) {
+    case "string":
+    case "number":
+      dom.textContent = meactNode.props.children.toString();
+      break;
+
+    case "object":
+      if (Array.isArray(meactNode.props.children)) {
+        meactNode.props.children.forEach((child: Element) =>
+          render(child, dom)
+        );
+      } else {
+        render(meactNode.props.children as Element, dom);
+      }
+      break;
+  }
+  domNode.appendChild(dom);
 };

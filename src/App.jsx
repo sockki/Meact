@@ -1,27 +1,20 @@
-function Header() {
+function Header({text}) {
   return (
     <header>
-      <h1>My React Clone</h1>
+      <div>{text}</div>
     </header>
   );
 }
 
-function Content() {
-  return (
-    <main>
-      <p>This is a sample content.</p>
-    </main>
-  );
-}
 
 
 export default function App() {
   return (
     <div id="app">
-      <Header />
-      <div>
-        {[1,2,3,4,5].map(v => <Content />)}
-      </div>
+      <span id="나만 달라서">ㄹㅇㄹㅇㄹㅇㄹ</span>
+      <>
+        {[1,2,3].map(v => <Header text={v}/>)}
+      </>
     </div>
   );
 }
