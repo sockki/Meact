@@ -5,15 +5,19 @@ type UseStateReturn<T> = [T, (newState: T) => void]
 let stateIndex = 0
 const stateArr:unknown[] = []
 export const useState = <T extends {}>(initState:T):UseStateReturn<T>=> {
-    const index = stateIndex++
+    const index = stateIndex
     if(stateArr[index] === undefined) {
         stateArr[index] = initState
     }
+    const state = stateArr[stateIndex]
+
     const setState = (newState:T) => {
         stateArr[stateIndex] = newState;
-        stateIndex = 0
         rendering();
     }
+
+    stateIndex += 1
+    
     return [stateArr[index] as T, setState]
 }
 

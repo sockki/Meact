@@ -1,5 +1,4 @@
 import { useState } from "../libs/Meact/useState";
-import { rendering } from "./main";
 
 function Header({text}) {
   return (
@@ -17,7 +16,6 @@ export default function App() {
   const [num2, setNum2] = useState(3);
   const onClick = () => {
     setNum(num + 1)
-    rendering()
   }
   renderingCount += 1
   return (
