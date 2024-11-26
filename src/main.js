@@ -9,6 +9,8 @@ export const rendering = () => {
     render(appElement, root)
 };
 
+
+
 rendering()
 
 
