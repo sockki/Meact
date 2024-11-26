@@ -16,13 +16,11 @@ const makeElement = (
     key = "" + elementKey;
   }
 
-  
   if (config !== null) {
     for (let propName of Object.keys(config)) {
       props[propName] = config[propName];
     }
   }
-  
 
   const element = {
     type,
@@ -48,5 +46,3 @@ export const jsx = (
 ): Element => {
   return makeElement(type, config, elementKey);
 };
-
-

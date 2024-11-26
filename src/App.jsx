@@ -1,6 +1,5 @@
 import ToDoApp from "./TodoApp";
 
-
 function App() {
   return (
     <div id="app">
