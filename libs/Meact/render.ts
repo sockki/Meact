@@ -3,13 +3,20 @@ import { DomNode, Element } from "../../type/meact";
 export const Fragment = "fragment";
 
 export const render = (meactNode: Element, domNode: DomNode) => {
+    
     const dom = document.createElement(
       meactNode.type === Fragment ? "div" : meactNode.type
     );
   
     Object.keys(meactNode.props).forEach((key) => {
       if (key !== "children" && meactNode.props[key]) {
-        dom.setAttribute(key, meactNode.props[key].toString());
+        if(typeof meactNode.props[key] === "function"){
+            dom.addEventListener("click",meactNode.props[key] as EventListener)
+        }
+        else {
+            dom.setAttribute(key, meactNode.props[key].toString());
+        }
+        
       }
     });
   

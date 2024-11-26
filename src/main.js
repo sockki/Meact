@@ -1,6 +1,5 @@
-import { render } from '../libs/Meact/jsx-runtime.ts';
+import { render } from '../libs/Meact/render.ts';
 import App from './App.jsx';
-
 
 const root = document.getElementById('root');
 
