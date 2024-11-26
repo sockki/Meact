@@ -11,7 +11,8 @@ export const render = (meactNode: Element, domNode: DomNode) => {
     Object.keys(meactNode.props).forEach((key) => {
       if (key !== "children" && meactNode.props[key]) {
         if(typeof meactNode.props[key] === "function"){
-            dom.addEventListener("click",meactNode.props[key] as EventListener)
+            const eventType = key.toLocaleLowerCase().slice(2)
+            dom.addEventListener(eventType,meactNode.props[key] as EventListener)
         }
         else {
             dom.setAttribute(key, meactNode.props[key].toString());

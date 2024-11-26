@@ -5,7 +5,7 @@ export type JsxsConfig = {
 };
 
 export type JsxConfig = {
-  [key: string]: string | number | Element | EventListener;
+  [key: string]: string | number | Element | EventListener | Function;
 };
 
 export type ElementKey = string | number;
