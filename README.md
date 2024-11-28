@@ -6,3 +6,4 @@
                          
 ### 2주차
 [1~2일차 정리](https://minjun0327.notion.site/1-2-14480a8e0c3c80dea924f849eea47258?pvs=73)
+[3~4일차 정리](https://minjun0327.notion.site/3-4-14980a8e0c3c80feb433ca9f4dd2c811)
