@@ -1,8 +1,8 @@
-import { DomNode, Element } from "../../type/meact";
+import { Element } from "../../type/meact";
 
 export const Fragment = "fragment";
 
-export const render = (meactNode: Element, domNode: DomNode) => {
+export const createDomElement = (meactNode: Element):HTMLElement => {
   const dom = document.createElement(
     meactNode.type === Fragment ? "div" : meactNode.type
   );
@@ -27,12 +27,12 @@ export const render = (meactNode: Element, domNode: DomNode) => {
     case "object":
       if (Array.isArray(meactNode.props.children)) {
         meactNode.props.children.forEach((child: Element) =>
-          render(child, dom)
+          dom.appendChild(createDomElement(child))
         );
       } else {
-        render(meactNode.props.children as Element, dom);
+        dom.appendChild(createDomElement(meactNode.props.children as Element)) 
       }
       break;
   }
-  domNode.appendChild(dom);
+  return dom;
 };
