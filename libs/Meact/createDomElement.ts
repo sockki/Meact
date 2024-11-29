@@ -2,7 +2,7 @@ import { Element } from "../../type/meact";
 
 export const Fragment = "fragment";
 
-export const createDomElement = (meactNode: Element):HTMLElement => {
+export const createDomElement = (meactNode: Element): HTMLElement => {
   const dom = document.createElement(
     meactNode.type === Fragment ? "div" : meactNode.type
   );
@@ -30,7 +30,7 @@ export const createDomElement = (meactNode: Element):HTMLElement => {
           dom.appendChild(createDomElement(child))
         );
       } else {
-        dom.appendChild(createDomElement(meactNode.props.children as Element)) 
+        dom.appendChild(createDomElement(meactNode.props.children as Element));
       }
       break;
   }

@@ -11,7 +11,7 @@ const makeElement = (
 
   let key: string | null = null;
   const props: JsxConfig = {
-    children: ""
+    children: "",
   };
 
   if (elementKey) {
