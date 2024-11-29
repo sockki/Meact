@@ -1,8 +1,8 @@
-import { ElementKey, JsxConfig, JsxsConfig } from "../../type/meact";
+import { ElementKey, JsxConfig } from "../../type/meact";
 
 const makeElement = (
   type: string | Function,
-  config: JsxsConfig | JsxConfig,
+  config: JsxConfig,
   elementKey?: ElementKey
 ) => {
   if (typeof type === "function") {
@@ -10,7 +10,9 @@ const makeElement = (
   }
 
   let key: string | null = null;
-  const props: JsxsConfig | JsxConfig = {};
+  const props: JsxConfig = {
+    children: ""
+  };
 
   if (elementKey) {
     key = "" + elementKey;
@@ -33,7 +35,7 @@ const makeElement = (
 
 export const jsxs = (
   type: string,
-  config: JsxsConfig,
+  config: JsxConfig,
   elementKey?: ElementKey
 ): Element => {
   return makeElement(type, config, elementKey);

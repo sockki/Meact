@@ -25,6 +25,6 @@ export const useState = <T extends {}>(initState: T): UseStateReturn<T> => {
 
   const currentState = stateArr[stateIndex];
   stateIndex += 1;
-
+  console.log(currentState)
   return [currentState.value as T, currentState.setState];
 };
