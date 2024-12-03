@@ -7,22 +7,22 @@ export const updateDomElement = (
   newVDom: Element,
   index: number = 0
 ) => {
-  console.log(parent, oldVDom, newVDom, index);
+  //console.log(parent, oldVDom, newVDom, index);
   // 1. oldVDom 만 있는 경우: 해당 DOM 삭제
   if (!newVDom && oldVDom) {
-    console.log("stop in 1");
+    //console.log("stop in 1");
     parent.removeChild(parent.children[index]);
     return;
   }
   // 2. newVDom 만 있는 경우: newDOM 추가
   if (newVDom && !oldVDom) {
-    console.log("stop in 2");
+    //console.log("stop in 2");
     parent.appendChild(createDomElement(newVDom));
     return;
   }
   // 3. oldVDom과 newVDom의 태그 이름(type)이 다를 경우
   if (newVDom.type !== oldVDom.type) {
-    console.log("stop in 3");
+    //console.log("stop in 3");
     parent.replaceChild(createDomElement(newVDom), parent.children[index]);
     return;
   }
@@ -38,7 +38,7 @@ export const updateDomElement = (
     typeof newVDom.props.children === "string" ||
     typeof newVDom.props.children === "number"
   ) {
-    console.log("stop in 5");
+    //console.log("stop in 5");
     parent.children[index].textContent = newVDom.props.children;
     return;
   }
@@ -51,7 +51,7 @@ export const updateDomElement = (
     ? newVDom.props.children.length
     : 1;
   const maxLength = Math.max(oldChildLength, newChildLength);
-  console.log("go next");
+  //console.log("go next");
   for (let i = 0; i < maxLength; i++) {
     updateDomElement(
       parent.children[index] as HTMLElement,
@@ -74,6 +74,10 @@ const updateAttributes = (
       if (typeof newProps[key] === "function") {
         const eventType = key.toLocaleLowerCase().slice(2);
         targetDom.addEventListener(eventType, newProps[key] as EventListener);
+        continue;
+      }
+      if (key === "value") {
+        (targetDom as HTMLInputElement).value = newProps[key].toString();
         continue;
       }
       targetDom.setAttribute(key, newProps[key].toString());

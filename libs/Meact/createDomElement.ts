@@ -2,22 +2,19 @@ import { Element } from "../../type/meact";
 
 export const Fragment = "fragment";
 
-export const createDomElement = (meactNode: Element): HTMLElement => {
-  const dom = document.createElement(
-    meactNode.type === Fragment ? "div" : meactNode.type
-  );
-
+const setAttributeAndEvent = (meactNode: Element, dom:HTMLElement) => {
   Object.keys(meactNode.props).forEach((key) => {
-    if (key !== "children" && meactNode.props[key]) {
-      if (typeof meactNode.props[key] === "function") {
-        const eventType = key.toLocaleLowerCase().slice(2);
-        dom.addEventListener(eventType, meactNode.props[key] as EventListener);
-      } else {
-        dom.setAttribute(key, meactNode.props[key].toString());
-      }
+    if (key === "children" || !meactNode.props[key]) return;
+    if (typeof meactNode.props[key] === "function") {
+      const eventType = key.toLocaleLowerCase().slice(2);
+      dom.addEventListener(eventType, meactNode.props[key] as EventListener);
+    } else {
+      dom.setAttribute(key, meactNode.props[key].toString());
     }
   });
+}
 
+const recursionByChildrenType = (meactNode: Element, dom:HTMLElement) => {
   switch (typeof meactNode.props.children) {
     case "string":
     case "number":
@@ -34,5 +31,15 @@ export const createDomElement = (meactNode: Element): HTMLElement => {
       }
       break;
   }
+}
+
+export const createDomElement = (meactNode: Element): HTMLElement => {
+  const dom = document.createElement(
+    meactNode.type === Fragment ? "div" : meactNode.type
+  );
+
+  setAttributeAndEvent(meactNode, dom)
+  recursionByChildrenType(meactNode, dom)
+  
   return dom;
 };
