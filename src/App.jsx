@@ -1,20 +1,12 @@
-function Header({text}) {
-  return (
-    <header>
-      <div>{text}</div>
-    </header>
-  );
-}
+import ToDoApp from "./TodoApp";
 
-
-
-export default function App() {
+function App() {
   return (
     <div id="app">
-      <span id="나만 달라서">ㄹㅇㄹㅇㄹㅇㄹ</span>
-      <>
-        {[1,2,3].map(v => <Header text={v}/>)}
-      </>
+      <h1>My React Clone</h1>
+      <ToDoApp />
     </div>
   );
 }
+
+export default App;

@@ -1,9 +1,16 @@
-import { render } from '../libs/Meact/jsx-runtime.ts';
+import { render } from '../libs/Meact/render.ts';
 import App from './App.jsx';
 
-const appElement = App();
 const root = document.getElementById('root');
 
-root && render(appElement, root)
+export const rendering = () => {
+    root.innerHTML = "";
+    const appElement = App()
+    render(appElement, root)
+};
 
-console.log(JSON.stringify(appElement, null, 2));
+
+
+rendering()
+
+
