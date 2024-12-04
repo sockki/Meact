@@ -1,11 +1,8 @@
 export type DomNode = HTMLElement;
 
-export type JsxsConfig = {
-  [key: string]: Element[];
-};
-
 export type JsxConfig = {
-  [key: string]: string | number | Element | EventListener | Function;
+  children: string | Element | Element[],
+  [key: string]: string | number | Element | Element[] | EventListener | Function;
 };
 
 export type ElementKey = string | number;
@@ -13,5 +10,5 @@ export type ElementKey = string | number;
 export type Element = {
   type: string;
   key: string | null;
-  props: JsxsConfig | JsxConfig;
+  props: JsxConfig;
 };

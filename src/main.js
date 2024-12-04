@@ -1,14 +1,18 @@
-import { render } from '../libs/Meact/render.ts';
+import { updateDomElement } from '../libs/Meact/updateDomElement.ts';
 import App from './App.jsx';
 
 const root = document.getElementById('root');
+let oldVDom = undefined
+
+let renderingNum = 0
 
 export const rendering = () => {
-    root.innerHTML = "";
-    const appElement = App()
-    render(appElement, root)
+  const newVDom = App()
+  updateDomElement(root,oldVDom,newVDom)
+  oldVDom = newVDom
+  renderingNum += 1
+  console.log(renderingNum)
 };
-
 
 
 rendering()
